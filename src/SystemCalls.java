@@ -38,32 +38,6 @@ public class SystemCalls {
 		return lines;
 	}
 
-	// if he wants all variables
-	// public String readDataFromDisk(String fileName, Disk disk) {
-	// 	ArrayList<String> data = new ArrayList<>();
-	// 	String res = "";
-	// 	for (int i = 0; i < disk.getDisk().size(); i++) {
-	// 		if (disk.getDisk().get(i).getData().equals(fileName)) {
-	// 			data = readFile(fileName);
-	// 			break;
-	// 		}
-	// 		for (int j = 0; j < data.size(); i++) {
-	// 			res += data.get(i) + "";
-	// 		}
-
-	// 	}
-	// 	return res;
-	// }
-
-
-	// public void writeOutputToDisk(String fileName, String data, Disk disk) {
-	// 	for (int i = 0; i < disk.getDisk().size(); i++) {
-	// 		if (disk.getDisk().get(i).getData().equals(fileName)) {
-	// 			writeFile(fileName, data);
-	// 		}
-	// 	}
-	// }
-
 	public void writeFile(String filename, String data) {
 		try {
 			String path = "src/resources/";
@@ -96,7 +70,6 @@ public class SystemCalls {
 			}
 		}
 
-		System.out.println("Result " +res);
 		return res;
 
 	}
