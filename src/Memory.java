@@ -118,24 +118,9 @@ public class Memory{
                 process.getPCB().setProcessState(ProcessState.READY);
             }
 
-    // public void moveToMemory(Process process,Disk disk){
-    //     int startAddress = process.getPCB().getMemoryBoundaries()[0];
-    //     int endAddress = process.getPCB().getMemoryBoundaries()[1];
-    //     for(int i = startAddress; i < endAddress; i++){
-    //         if(disk.getDisk().get(i).getVariable()!= null && disk.getDisk().get(i).getData()!=null){ // if memory.get(i).getVariable()!=null && memory.get(i).getValue()!=null
-    //                     memory.get(i).setVariable(disk.getDisk().get(i).getVariable());
-    //                     memory.get(i).setData(disk.getDisk().get(i).getData());
-    //                     // disk.getDisk().get(i).setVariable(null);
-    //                     // disk.getDisk().get(i).setData(null);
-    //             }
-    //         }
-    //     }
-
 
         public void moveToMemory2 (Process process,Disk disk){
-            // int startAddress = process.getPCB().getMemoryBoundaries()[0];
-            // int endAddress = process.getPCB().getMemoryBoundaries()[1];
-            // int range =endAddress-startAddress;
+            
             int processId= process.getPCB().getProcessID();
             process.setIndices(new ArrayList<Integer>());
             int begin=0;
@@ -187,9 +172,7 @@ public class Memory{
 
 
         public void moveToMemory(Process process,Disk disk){
-            // int startAddress = process.getPCB().getMemoryBoundaries()[0];
-            // int endAddress = process.getPCB().getMemoryBoundaries()[1];
-            // int range =endAddress-startAddress;
+            
             int processId= process.getPCB().getProcessID();
             process.setIndices(new ArrayList<Integer>());
             int begin=0;
@@ -211,15 +194,12 @@ public class Memory{
                     }
                 }
             }
-            //System.out.println("begin " +begin);
             
             for(int i=0;i<40;i++){
                 if(memory.get(i).getVariable()== null && memory.get(i).getData()==null){
                     
                     memory.get(i).setVariable(disk.getDisk().get(begin).getVariable());
-                    //System.out.println("VARIABLE "+disk.getDisk().get(begin).getVariable());
                     memory.get(i).setData(disk.getDisk().get(begin).getData());
-                    //System.out.println("anyth " + disk.getDisk().get(begin).getVariable());
                     process.getIndices().add(i);
 
                     if (disk.getDisk().get(begin).getVariable().contains("Variable 1 3")
