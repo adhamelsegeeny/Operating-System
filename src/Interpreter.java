@@ -486,9 +486,12 @@ public class Interpreter {
     }
 
     public void updateDisk(Process process, String key, String data) {
+        SystemCalls sc= new SystemCalls();
         for (int i = 0; i < disk.getDisk().size(); i++) {
-            if (disk.getDisk().get(i).getVariable()!=null && disk.getDisk().get(i).getVariable().equals(key)) {
-                disk.getDisk().get(i).setData(data);
+            if (sc.readFromDisk(disk, i)!=null && sc.readFromDisk(disk, i).equals(key)) {
+                sc= new SystemCalls();
+                sc.writeOnDisk(disk, i, data);
+                break;
             }
         }
 

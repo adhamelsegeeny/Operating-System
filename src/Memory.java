@@ -399,13 +399,8 @@ public class Memory{
     }
     
     public void printMemory(){
-        for(int i = 0; i < MAX_MEMORY; i++){
-            if(memory.get(i)==null || memory.get(i).getVariable()==null){
-                break;
-            }
-            System.out.println(memory.get(i).getVariable() + " " + memory.get(i).getData());
-            
-        }
+        SystemCalls sc= new SystemCalls();
+        sc.printMemory(this);
     }
 
     public ArrayList<MemoryWord> getMemory() {
@@ -420,13 +415,11 @@ public class Memory{
         int startAddress = process.getPCB().getMemoryBoundaries()[0];
         
         int endAddress = process.getPCB().getMemoryBoundaries()[1];
-        
+        SystemCalls sc= new SystemCalls();
+
         
         while(startAddress<=endAddress){
-            if(memory.get(startAddress).getVariable()!=null && memory.get(startAddress).getVariable().equals(key)){
-                
-                SystemCalls sc= new SystemCalls();
-
+            if(sc.memRead(startAddress, this)!=null && sc.memRead(startAddress, this).equals(key)){
                 sc.writeDataToMemory(startAddress, data, this);
                 break;
             }

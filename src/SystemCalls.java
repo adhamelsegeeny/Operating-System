@@ -74,9 +74,40 @@ public class SystemCalls {
 
 	}
 
+
+	public String memRead(int address,Memory memory){
+		return memory.getMemory().get(address).getData();
+	}
+
 	public void writeDataToMemory(int address, String data, Memory memory) {
 		memory.getMemory().get(address).setData(data);
 
+	}
+
+	public void writeOnDisk(Disk disk, int index,String data){
+		disk.getDisk().get(index).setData(data);
+	}
+
+	public String readFromDisk(Disk disk, int index){
+		//disk.getDisk().get(i).getVariable()!=null 
+		return disk.getDisk().get(index).getVariable();
+
+	}
+
+	public void printMemory(Memory memory){
+		for(int i = 0; i < 40; i++){
+            if(memory.getMemory().get(i)==null || memory.getMemory().get(i).getVariable()==null){
+                break;
+            }
+            System.out.println(memory.getMemory().get(i).getVariable() + " " + memory.getMemory().get(i).getData());
+            
+        }
+	}
+
+	public void printDisk(Disk disk){
+		for(int i=0;i<disk.getDisk().size();i++){
+            System.out.println(disk.getDisk().get(i).getVariable()+" "+disk.getDisk().get(i).getData());
+        }
 	}
 
 	

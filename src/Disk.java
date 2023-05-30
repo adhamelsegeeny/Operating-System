@@ -15,8 +15,7 @@ public class Disk{
     }
     
     public void printDisk(){
-        for(int i=0;i<disk.size();i++){
-            System.out.println(disk.get(i).getVariable()+" "+disk.get(i).getData());
-        }
+        SystemCalls sc= new SystemCalls();
+        sc.printDisk(this);
     }
 }
