@@ -115,7 +115,6 @@ public class Memory{
 
                 }
 
-                process.getPCB().setProcessState(ProcessState.READY);
             }
 
 
@@ -354,7 +353,7 @@ public class Memory{
             memory.get(i).setVariable(null);
             memory.get(i).setData(null);
         }
-        //process.getPCB().setMemoryBoundaries(null);
+        // process.getPCB().setMemoryBoundaries(new int[2]);
         // process.getPCB().setMemoryBoundaries(null);
     }
 

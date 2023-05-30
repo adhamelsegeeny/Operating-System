@@ -93,6 +93,9 @@ public class Interpreter {
             memory.loadToDisk(process, disk);
         }
 
+        process.getPCB().setProcessState(ProcessState.READY);
+
+
     }
 
     public Process removeProcess() {
@@ -188,7 +191,7 @@ public class Interpreter {
 
             String input1 = systemCalls.readFromMemory(process, 1, memory);
             String input2 = systemCalls.readFromMemory(process, 2, memory);
-            String result = printNumbersFromTo(Integer.parseInt(input1), Integer.parseInt(input2));
+            String result = printNumbersFromTo(Integer.parseInt(input2), Integer.parseInt(input1));
             systemCalls.print(result);
             process.getVariables().put("Variable " + process.getPCB().getProcessID() + " 3", result);
             updateDisk(process, "Variable " + process.getPCB().getProcessID() + " 3", result);
@@ -309,7 +312,7 @@ public class Interpreter {
 
                     if (time == 1) {
                         programCode = new ArrayList<>();
-                        loadProgram("src/resources/Program_1.txt");
+                        loadProgram("src/resources/Program_2.txt");
                     }
                     if (time == 4) {
                         programCode = new ArrayList<>();
@@ -503,7 +506,7 @@ public class Interpreter {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Interpreter interpreter = new Interpreter();
-        interpreter.loadProgram("src/resources/Program_2.txt");
+        interpreter.loadProgram("src/resources/Program_1.txt");
 
         interpreter.scheduler();
     }

@@ -59,6 +59,7 @@ public class SystemCalls {
 		for (int i = 1; i <= h.keySet().size(); i++) {
 			if (i == variableIndex) {
 				variableName = h.keySet().toArray()[i-1].toString();
+				System.out.println("AAAA " +(i-1));
 				break;
 			}
 
