@@ -342,6 +342,9 @@ public class Interpreter {
                 }
             }
 
+            if(process.getPCB().getProcessState()!=ProcessState.FINISHED){
+                updateDisk(process, "Process State: ", process.getPCB().getProcessState()+"");
+            }
             memory.removeFromMemory(process, disk);
             System.out.println("process " + process.getPCB().getProcessID() + " is removed from memory");
 
