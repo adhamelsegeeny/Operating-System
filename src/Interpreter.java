@@ -77,6 +77,7 @@ public class Interpreter {
         process.setInstructions(programCode);
         processes.add(process);
         readyQueue.add(process);
+        process.getPCB().setProcessState(ProcessState.READY);
         
         int requiredMemory = process.getInstructions().size() + Process.getVariablesCount() + 4;
         process.setPath(path);
@@ -93,7 +94,6 @@ public class Interpreter {
             memory.loadToDisk(process, disk);
         }
 
-        process.getPCB().setProcessState(ProcessState.READY);
 
 
     }
@@ -322,11 +322,12 @@ public class Interpreter {
                 }
 
                 if (process.getPCB().getProgramCounter() == process.getInstructions().size()) {
+
                     process.getPCB().setProcessState(ProcessState.FINISHED);
 
                     i = timeSlice;
 
-                    memory.deallocate(process);
+                    memory.deallocate(process,disk);
                     processes.remove(process);
 
                     System.out.println("Process " + process.getPCB().getProcessID() + " is finished");
@@ -485,19 +486,8 @@ public class Interpreter {
     }
 
     public void updateDisk(Process process, String key, String data) {
-        int begin = 0;
-        if (process.getPCB().getProcessID() == 1) {
-            begin = 11;
-        }
-        if (process.getPCB().getProcessID() == 2) {
-            begin = 25;
-        }
-        if (process.getPCB().getProcessID() == 3) {
-            begin = 41;
-        }
-
-        for (int i = begin; i < begin + 3; i++) {
-            if (disk.getDisk().get(i).getVariable() != null && disk.getDisk().get(i).getVariable().equals(key)) {
+        for (int i = 0; i < disk.getDisk().size(); i++) {
+            if (disk.getDisk().get(i).getVariable()!=null && disk.getDisk().get(i).getVariable().equals(key)) {
                 disk.getDisk().get(i).setData(data);
             }
         }

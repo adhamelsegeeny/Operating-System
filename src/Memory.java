@@ -346,15 +346,22 @@ public class Memory{
 
         
     
-    public void deallocate(Process process){
+    public void deallocate(Process process,Disk disk){
         int startAddress = process.getPCB().getMemoryBoundaries()[0];
         int endAddress = process.getPCB().getMemoryBoundaries()[1];
         for(int i = startAddress; i < endAddress; i++){
             memory.get(i).setVariable(null);
             memory.get(i).setData(null);
         }
-        // process.getPCB().setMemoryBoundaries(new int[2]);
-        // process.getPCB().setMemoryBoundaries(null);
+        
+        process.getPCB().setMemoryBoundaries(null);
+        for(int i=0;i<disk.getDisk().size();i++){
+            if(disk.getDisk().get(i).getVariable().equals("Process ID: ")){
+                disk.getDisk().get(i+3).setData(null);
+                disk.getDisk().get(i+1).setData(ProcessState.FINISHED+"");
+            }
+
+        }
     }
 
     public void putToDisk(Process process){
